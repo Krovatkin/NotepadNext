@@ -125,9 +125,11 @@ void SessionManager::clearDirectory() const
 
 void SessionManager::saveSession(MainWindow *window)
 {
-    qInfo(Q_FUNC_INFO);
+    // qInfo(Q_FUNC_INFO); // Reduce log spam
 
-    clear();
+    // Do not clear() everything. We want incremental backup.
+    clearSettings();
+    // We will clean up the directory at the end by removing files that were not used/updated in this pass.
 
     // Early out if no flags are set
     if (fileTypes == SessionManager::None) {
@@ -137,6 +139,7 @@ void SessionManager::saveSession(MainWindow *window)
     const ScintillaNext *currentEditor = window->currentEditor();
     int currentEditorIndex = 0;
     ApplicationSettings settings;;
+    QSet<QString> usedSessionFiles;
 
     settings.beginGroup("CurrentSession");
 
@@ -153,10 +156,10 @@ void SessionManager::saveSession(MainWindow *window)
                 storeFileDetails(editor, settings);
             }
             else if (editorType == SessionManager::UnsavedFile) {
-                storeUnsavedFileDetails(editor, settings);
+                storeUnsavedFileDetails(editor, settings, usedSessionFiles);
             }
             else if (editorType == SessionManager::TempFile) {
-                storeTempFile(editor, settings);
+                storeTempFile(editor, settings, usedSessionFiles);
             }
             else {
                 qWarning("Unknown SessionFileType %d", editorType);
@@ -175,6 +178,14 @@ void SessionManager::saveSession(MainWindow *window)
     settings.setValue("CurrentEditorIndex", currentEditorIndex);
 
     settings.endGroup();
+
+    // Cleanup stale files in session directory
+    QDir d = sessionDirectory();
+    for (const QString &f : d.entryList(QDir::Files)) {
+        if (!usedSessionFiles.contains(f)) {
+            d.remove(f);
+        }
+    }
 }
 
 void SessionManager::loadSession(MainWindow *window)
@@ -279,9 +290,15 @@ ScintillaNext* SessionManager::loadFileDetails(QSettings &settings)
     }
 }
 
-void SessionManager::storeUnsavedFileDetails(ScintillaNext *editor, QSettings &settings)
+void SessionManager::storeUnsavedFileDetails(ScintillaNext *editor, QSettings &settings, QSet<QString> &usedSessionFiles)
 {
-    const QString sessionFileName = RandomSessionFileName();
+    QString sessionFileName = editor->getBackupFileName();
+    if (sessionFileName.isEmpty()) {
+        sessionFileName = RandomSessionFileName();
+        editor->setBackupFileName(sessionFileName);
+    }
+
+    usedSessionFiles.insert(sessionFileName);
 
     settings.setValue("Type", "UnsavedFile");
     settings.setValue("FilePath", editor->getFilePath());
@@ -289,7 +306,9 @@ void SessionManager::storeUnsavedFileDetails(ScintillaNext *editor, QSettings &s
 
     storeEditorViewDetails(editor, settings);
 
-    saveIntoSessionDirectory(editor, sessionFileName);
+    if (editor->isModified()) {
+        saveIntoSessionDirectory(editor, sessionFileName);
+    }
 }
 
 ScintillaNext *SessionManager::loadUnsavedFileDetails(QSettings &settings)
@@ -329,9 +348,15 @@ ScintillaNext *SessionManager::loadUnsavedFileDetails(QSettings &settings)
     }
 }
 
-void SessionManager::storeTempFile(ScintillaNext *editor, QSettings &settings)
+void SessionManager::storeTempFile(ScintillaNext *editor, QSettings &settings, QSet<QString> &usedSessionFiles)
 {
-    const QString sessionFileName = RandomSessionFileName();
+    QString sessionFileName = editor->getBackupFileName();
+    if (sessionFileName.isEmpty()) {
+        sessionFileName = RandomSessionFileName();
+        editor->setBackupFileName(sessionFileName);
+    }
+
+    usedSessionFiles.insert(sessionFileName);
 
     settings.setValue("Type", "Temp");
     settings.setValue("FileName", editor->getName());
@@ -340,7 +365,9 @@ void SessionManager::storeTempFile(ScintillaNext *editor, QSettings &settings)
 
     storeEditorViewDetails(editor, settings);
 
-    saveIntoSessionDirectory(editor, sessionFileName);
+    if (editor->isModified()) {
+        saveIntoSessionDirectory(editor, sessionFileName);
+    }
 }
 
 ScintillaNext *SessionManager::loadTempFile(QSettings &settings)
