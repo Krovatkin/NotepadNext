@@ -480,7 +480,7 @@ MainWindow *NotepadNextApplication::createNewWindow()
 
     // Timer to autosave the session
     connect(&autoSaveTimer, &QTimer::timeout, this, &NotepadNextApplication::saveSession);
-    autoSaveTimer.start(60 * 1000);
+    autoSaveTimer.start(7 * 1000); // 7s interval for better crash protection
 
     return window;
 }

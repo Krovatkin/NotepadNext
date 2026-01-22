@@ -23,6 +23,7 @@
 
 #include <QDir>
 #include <QSettings>
+#include <QSet>
 
 
 class ScintillaNext;
@@ -65,10 +66,10 @@ private:
     void storeFileDetails(ScintillaNext *editor, QSettings &settings);
     ScintillaNext *loadFileDetails(QSettings &settings);
 
-    void storeUnsavedFileDetails(ScintillaNext *editor, QSettings &settings);
+    void storeUnsavedFileDetails(ScintillaNext *editor, QSettings &settings, QSet<QString> &usedSessionFiles);
     ScintillaNext *loadUnsavedFileDetails(QSettings &settings);
 
-    void storeTempFile(ScintillaNext *editor, QSettings &settings);
+    void storeTempFile(ScintillaNext *editor, QSettings &settings, QSet<QString> &usedSessionFiles);
     ScintillaNext *loadTempFile(QSettings &settings);
 
     void storeEditorViewDetails(ScintillaNext *editor, QSettings &settings);

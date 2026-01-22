@@ -92,6 +92,12 @@ public:
     // NOTE: this is dangerous and should only be used in very rare situations
     void setFileInfo(const QString &filePath);
 
+    // Backup system
+    QString getBackupFileName() const { return backupFileName; }
+    void setBackupFileName(const QString &fileName) { backupFileName = fileName; }
+
+    bool isModified() const { return modify(); } // Wrapper for Scintilla modify()
+
     void detachFileInfo(const QString &newName);
 
     enum FileStateChange {
@@ -153,6 +159,7 @@ private:
     QString name;
     BufferType bufferType = BufferType::New;
     QFileInfo fileInfo;
+    QString backupFileName;
     QDateTime modifiedTime;
     RangeAllocator indicatorResources;
 
