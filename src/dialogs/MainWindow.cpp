@@ -2114,6 +2114,15 @@ void MainWindow::initUpdateCheck()
 void MainWindow::closeEvent(QCloseEvent *event)
 {
     const SessionManager *sessionManager = app->getSessionManager();
+
+    if (app->getSettings()->confirmOnExit()) {
+        auto result = QMessageBox::question(this, tr("Exit Confirmation"), tr("Are you sure you want to exit?"), QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        if (result == QMessageBox::No) {
+            event->ignore();
+            return;
+        }
+    }
+
     QVector<ScintillaNext *> e;
 
     // Check all editors to see if the session manager will not handle it

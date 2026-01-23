@@ -46,19 +46,49 @@ PreferencesDialog::PreferencesDialog(ApplicationSettings *settings, QWidget *par
     MapSettingToCheckBox(ui->checkBoxStatusBar, &ApplicationSettings::showStatusBar, &ApplicationSettings::setShowStatusBar, &ApplicationSettings::showStatusBarChanged);
     MapSettingToCheckBox(ui->checkBoxRecenterSearchDialog, &ApplicationSettings::centerSearchDialog, &ApplicationSettings::setCenterSearchDialog, &ApplicationSettings::centerSearchDialogChanged);
 
+    MapSettingToCheckBox(ui->checkBoxHotExit, &ApplicationSettings::hotExit, &ApplicationSettings::setHotExit, &ApplicationSettings::hotExitChanged);
+    connect(ui->checkBoxHotExit, &QCheckBox::toggled, this, [=](bool checked) {
+        if (checked) {
+             ui->gbxRestorePreviousSession->setChecked(true);
+             ui->checkBoxUnsavedFiles->setChecked(true);
+             ui->checkBoxRestoreTempFiles->setChecked(true);
+        }
+    });
+
     MapSettingToGroupBox(ui->gbxRestorePreviousSession, &ApplicationSettings::restorePreviousSession, &ApplicationSettings::setRestorePreviousSession, &ApplicationSettings::restorePreviousSessionChanged);
     connect(ui->gbxRestorePreviousSession, &QGroupBox::toggled, this, [=](bool checked) {
         if (!checked) {
             ui->checkBoxUnsavedFiles->setChecked(false);
             ui->checkBoxRestoreTempFiles->setChecked(false);
+            ui->checkBoxHotExit->setChecked(false);
         }
         else {
+            if (ui->checkBoxUnsavedFiles->isChecked() && ui->checkBoxRestoreTempFiles->isChecked()) {
+                ui->checkBoxHotExit->setChecked(true);
+            }
             QMessageBox::warning(this, tr("Warning"), tr("This feature is experimental and it should not be considered safe for critically important work. It may lead to possible data loss. Use at your own risk."));
         }
     });
 
     MapSettingToCheckBox(ui->checkBoxUnsavedFiles, &ApplicationSettings::restoreUnsavedFiles, &ApplicationSettings::setRestoreUnsavedFiles, &ApplicationSettings::restoreUnsavedFilesChanged);
+    connect(ui->checkBoxUnsavedFiles, &QCheckBox::toggled, this, [=](bool checked) {
+        if (!checked) {
+            ui->checkBoxHotExit->setChecked(false);
+        }
+        else if (ui->gbxRestorePreviousSession->isChecked() && ui->checkBoxRestoreTempFiles->isChecked()) {
+            ui->checkBoxHotExit->setChecked(true);
+        }
+    });
+
     MapSettingToCheckBox(ui->checkBoxRestoreTempFiles, &ApplicationSettings::restoreTempFiles, &ApplicationSettings::setRestoreTempFiles, &ApplicationSettings::restoreTempFilesChanged);
+    connect(ui->checkBoxRestoreTempFiles, &QCheckBox::toggled, this, [=](bool checked) {
+        if (!checked) {
+            ui->checkBoxHotExit->setChecked(false);
+        }
+        else if (ui->gbxRestorePreviousSession->isChecked() && ui->checkBoxUnsavedFiles->isChecked()) {
+            ui->checkBoxHotExit->setChecked(true);
+        }
+    });
 
     MapSettingToCheckBox(ui->checkBoxCombineSearchResults, &ApplicationSettings::combineSearchResults, &ApplicationSettings::setCombineSearchResults, &ApplicationSettings::combineSearchResultsChanged);
 
@@ -69,6 +99,7 @@ PreferencesDialog::PreferencesDialog(ApplicationSettings *settings, QWidget *par
     });
 
     MapSettingToCheckBox(ui->checkBoxExitOnLastTabClosed, &ApplicationSettings::exitOnLastTabClosed, &ApplicationSettings::setExitOnLastTabClosed, &ApplicationSettings::exitOnLastTabClosedChanged);
+    MapSettingToCheckBox(ui->checkBoxConfirmOnExit, &ApplicationSettings::confirmOnExit, &ApplicationSettings::setConfirmOnExit, &ApplicationSettings::confirmOnExitChanged);
 
     ui->fcbDefaultFont->setCurrentFont(QFont(settings->fontName()));
     connect(ui->fcbDefaultFont, &QFontComboBox::currentFontChanged, this, [=](const QFont &f) {

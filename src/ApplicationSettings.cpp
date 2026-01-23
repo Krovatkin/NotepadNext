@@ -48,12 +48,14 @@ CREATE_SETTING(Gui, CenterSearchDialog, centerSearchDialog, bool, true)
 
 CREATE_SETTING(Gui, TabsClosable, tabsClosable, bool, true)
 CREATE_SETTING(Gui, ExitOnLastTabClosed, exitOnLastTabClosed, bool, false)
+CREATE_SETTING(Gui, ConfirmOnExit, confirmOnExit, bool, true)
 
 CREATE_SETTING(Gui, CombineSearchResults, combineSearchResults, bool, false)
 
-CREATE_SETTING(App, RestorePreviousSession, restorePreviousSession, bool, false)
-CREATE_SETTING(App, RestoreUnsavedFiles, restoreUnsavedFiles, bool, false)
-CREATE_SETTING(App, RestoreTempFiles, restoreTempFiles, bool, false)
+CREATE_SETTING(App, RestorePreviousSession, restorePreviousSession, bool, true)
+CREATE_SETTING(App, RestoreUnsavedFiles, restoreUnsavedFiles, bool, true)
+CREATE_SETTING(App, RestoreTempFiles, restoreTempFiles, bool, true)
+CREATE_SETTING(App, HotExit, hotExit, bool, true)
 
 CREATE_SETTING(App, DefaultDirectoryBehavior, defaultDirectoryBehavior, ApplicationSettings::DefaultDirectoryBehaviorEnum, ApplicationSettings::FollowCurrentDocument)
 CREATE_SETTING(App, DefaultDirectory, defaultDirectory, QString, QString())

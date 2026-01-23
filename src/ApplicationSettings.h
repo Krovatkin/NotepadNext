@@ -96,12 +96,14 @@ public:
 
     DEFINE_SETTING(TabsClosable, tabsClosable, bool)
     DEFINE_SETTING(ExitOnLastTabClosed, exitOnLastTabClosed, bool)
+    DEFINE_SETTING(ConfirmOnExit, confirmOnExit, bool)
 
     DEFINE_SETTING(CombineSearchResults, combineSearchResults, bool)
 
     DEFINE_SETTING(RestorePreviousSession, restorePreviousSession, bool)
     DEFINE_SETTING(RestoreUnsavedFiles, restoreUnsavedFiles, bool)
     DEFINE_SETTING(RestoreTempFiles, restoreTempFiles, bool)
+    DEFINE_SETTING(HotExit, hotExit, bool)
 
     DEFINE_SETTING(DefaultDirectoryBehavior, defaultDirectoryBehavior, DefaultDirectoryBehaviorEnum)
     DEFINE_SETTING(DefaultDirectory, defaultDirectory, QString)

@@ -53,6 +53,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="checkBoxHotExit">
+           <property name="text">
+            <string>Hot Exit</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <widget class="QGroupBox" name="gbxRestorePreviousSession">
            <property name="title">
             <string>Restore previous session</string>
@@ -121,6 +128,13 @@
         <widget class="QCheckBox" name="checkBoxExitOnLastTabClosed">
          <property name="text">
           <string>Exit on last tab closed</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QCheckBox" name="checkBoxConfirmOnExit">
+         <property name="text">
+          <string>Confirm on exit</string>
          </property>
         </widget>
        </item>
