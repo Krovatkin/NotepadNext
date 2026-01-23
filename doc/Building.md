@@ -49,3 +49,44 @@ cd build
 qmake ../src/NotepadNext.pro
 make -j$(nproc)
 ```
+
+# Docker
+
+If you do not have a local Qt development environment, you can build the project using Docker.
+
+1.  Build the Docker image:
+    ```bash
+    docker build -t notepadnext-build .
+    ```
+
+2.  Run the build inside the container:
+    ```bash
+    docker run --rm -v $(pwd):/app notepadnext-build sh -c "mkdir -p build && cd build && qmake6 ../src/NotepadNext.pro && make -j$(nproc)"
+    ```
+
+    > **Note:** We use `qmake6` explicitly to ensure the correct Qt 6 version is used.
+
+# GitHub CI Builds
+
+You can use the release scripts in `.github/workflows` to trigger builds and generate artifacts directly on GitHub.
+
+## 1. Test Builds (Pull Requests / Push)
+To generate test builds for Windows, Linux, and macOS:
+1.  **Push** commits to the `master` branch OR
+2.  **Open a Pull Request** against `master`.
+
+The [Build Notepad Next](/.github/workflows/build.yml) workflow will automatically run. Once completed, you can download the artifacts (installers, AppImages, etc.) from the **Agile Actions** > **Build Notepad Next** run page.
+
+## 2. Release Builds
+To perform a full release (version update + tag + draft release):
+1.  Go to the **Actions** tab in the GitHub repository.
+2.  Select the **Create Release** workflow from the sidebar.
+3.  Click **Run workflow**.
+4.  Enter the new version number (e.g., `0.9` - do *not* include the 'v').
+5.  Click **Run workflow**.
+
+This will:
+-   Update the version in `src/Version.pri`.
+-   Commit and Tag the release (e.g., `v0.9`).
+-   Trigger the main build workflow.
+-   Create a **Draft Release** with the compiled artifacts attached.

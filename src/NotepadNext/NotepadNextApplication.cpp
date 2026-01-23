@@ -227,15 +227,17 @@ SessionManager *NotepadNextApplication::getSessionManager() const
 {
     SessionManager::SessionFileTypes fileTypes;
 
-    if (settings->restorePreviousSession()) {
+    bool hotExit = settings->hotExit();
+
+    if (settings->restorePreviousSession() || hotExit) {
         fileTypes |= SessionManager::SavedFile;
     }
 
-    if (settings->restoreUnsavedFiles()) {
+    if (settings->restoreUnsavedFiles() || hotExit) {
         fileTypes |= SessionManager::UnsavedFile;
     }
 
-    if (settings->restoreTempFiles()) {
+    if (settings->restoreTempFiles() || hotExit) {
         fileTypes |= SessionManager::TempFile;
     }
 

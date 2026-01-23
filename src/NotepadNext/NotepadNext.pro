@@ -15,7 +15,7 @@
 # along with Notepad Next.  If not, see <https://www.gnu.org/licenses/>.
 
 
-QT += core widgets printsupport network
+QT += core widgets printsupport network gui-private
 
 TARGET = NotepadNext
 

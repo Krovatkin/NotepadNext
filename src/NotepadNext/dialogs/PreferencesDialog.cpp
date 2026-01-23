@@ -67,6 +67,7 @@ PreferencesDialog::PreferencesDialog(ApplicationSettings *settings, QWidget *par
     });
 
     MapSettingToCheckBox(ui->checkBoxExitOnLastTabClosed, &ApplicationSettings::exitOnLastTabClosed, &ApplicationSettings::setExitOnLastTabClosed, &ApplicationSettings::exitOnLastTabClosedChanged);
+    MapSettingToCheckBox(ui->checkBoxConfirmOnExit, &ApplicationSettings::confirmOnExit, &ApplicationSettings::setConfirmOnExit, &ApplicationSettings::confirmOnExitChanged);
 
     ui->fcbDefaultFont->setCurrentFont(QFont(settings->fontName()));
     connect(ui->fcbDefaultFont, &QFontComboBox::currentFontChanged, this, [=](const QFont &f) {
