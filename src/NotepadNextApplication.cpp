@@ -491,7 +491,7 @@ QStringList NotepadNextApplication::debugInfo() const
 {
     QStringList info;
 
-    info.append(QStringLiteral("%1 v%2 %3").arg(applicationDisplayName(), applicationVersion(), APP_DISTRIBUTION));
+    info.append(QStringLiteral("%1 v%2-%3 %4").arg(applicationDisplayName(), applicationVersion(), APP_GIT_HASH, APP_DISTRIBUTION));
     info.append(QStringLiteral("Build Date/Time: %1 %2").arg(__DATE__, __TIME__));
     info.append(QStringLiteral("Qt: %1").arg(qVersion()));
     info.append(QStringLiteral("OS: %1").arg(QSysInfo::prettyProductName()));

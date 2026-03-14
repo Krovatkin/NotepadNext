@@ -244,4 +244,5 @@ target_compile_definitions(NotepadNext
         APP_VERSION="${PROJECT_VERSION}"
         APP_COPYRIGHT="${APP_COPYRIGHT}"
         APP_DISTRIBUTION="${APP_DISTRIBUTION}"
+        APP_GIT_HASH="${GIT_HASH}"
 )

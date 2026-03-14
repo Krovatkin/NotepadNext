@@ -32,7 +32,7 @@ int main(int argc, char *argv[])
     // Set these since other parts of the app references these
     QApplication::setOrganizationName("NotepadNext");
     QApplication::setApplicationName("NotepadNext");
-    QGuiApplication::setApplicationDisplayName("Notepad Next");
+    QGuiApplication::setApplicationDisplayName("Notepad Next (Nick's fork)");
     QGuiApplication::setApplicationVersion(APP_VERSION);
 
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
