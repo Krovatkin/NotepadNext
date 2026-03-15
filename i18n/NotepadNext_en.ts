@@ -2046,6 +2046,16 @@
         <source>No updates are available at this time.</source>
         <translation type="unfinished"></translation>
     </message>
+    <message>
+        <location filename="../src/dialogs/MainWindow.cpp" line="2119"/>
+        <source>Exit Confirmation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs/MainWindow.cpp" line="2119"/>
+        <source>Are you sure you want to exit?</source>
+        <translation type="unfinished"></translation>
+    </message>
 </context>
 <context>
     <name>PreferencesDialog</name>
@@ -2071,137 +2081,147 @@
     </message>
     <message>
         <location filename="../src/dialogs/PreferencesDialog.ui" line="58"/>
+        <source>Hot Exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="65"/>
         <source>Restore previous session</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="70"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="77"/>
         <source>Unsaved changes</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="77"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="84"/>
         <source>Temporary files</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="89"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="96"/>
         <source>Recenter find/replace dialog when opened</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="96"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="103"/>
         <source>Combine search results</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="114"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="121"/>
         <source>Translation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="123"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="130"/>
         <source>Exit on last tab closed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="132"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="137"/>
+        <source>Confirm on exit</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="146"/>
         <source>Default Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="138"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="152"/>
         <source>Font</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="148"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="162"/>
         <source>Font Size</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="155"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="169"/>
         <source>pt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="188"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="202"/>
         <source>Default Line Endings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="200"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="214"/>
         <source>Highlight URLs</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="207"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="221"/>
         <source>Show Line Numbers</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="214"/>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="122"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="228"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="153"/>
         <source>Default Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="220"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="234"/>
         <source>Follow Current Document</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="227"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="241"/>
         <source>Last Used Directory</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="246"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="260"/>
         <source>...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="277"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="291"/>
         <source>TextLabel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.ui" line="289"/>
+        <location filename="../src/dialogs/PreferencesDialog.ui" line="303"/>
         <source>An application restart is required to apply certain settings.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="56"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="69"/>
         <source>Warning</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="56"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="69"/>
         <source>This feature is experimental and it should not be considered safe for critically important work. It may lead to possible data loss. Use at your own risk.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="85"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="116"/>
         <source>System Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="86"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="117"/>
         <source>Windows (CR LF)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="87"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="118"/>
         <source>Linux (LF)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="88"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="119"/>
         <source>Macintosh (CR)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../src/dialogs/PreferencesDialog.cpp" line="185"/>
+        <location filename="../src/dialogs/PreferencesDialog.cpp" line="216"/>
         <source>&lt;System Default&gt;</source>
         <translation type="unfinished"></translation>
     </message>
